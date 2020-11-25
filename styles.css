@@ -12,6 +12,11 @@ html, body {
     margin: auto;
 }
 
+.user-icon {
+    height: 40px;
+    width: 40px;
+}
+
 .login-button {
     background-image: url('/CCCAPDEV-MP1-Resume/icons/user.svg');
 }
@@ -34,18 +39,18 @@ h1.hello {
     font-size: 108px;
 }
 
-h4.front-end {
+h4.desc {
     font-weight: 400;
     font-size: 36px;
 }
 
 .about-me-info {
     background-color:#212121;
-    height: 800px;
-
+    height: 750px;
+    display: block;
 }
 
-section.about-me h2, section.education h2, section.organizations h2 {
+section.about-me h2, section.education h2, section.organizations h2, .my-craft {
     color: #ffa200;
     font-weight: 700;
     padding-top: 30px;
@@ -53,13 +58,257 @@ section.about-me h2, section.education h2, section.organizations h2 {
 }
 
 .box {
-    display: grid;
+    display: block;
+    position: relative;
     border-radius: 15px;
+    top: -170px;
+    background-color: #191919;
 }
 
-.row {
+.skills{
     border: 2px solid #ffa200;
     border-radius: 15px;
 }
 
+.icon {
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
 
+.front-end {
+    border-right: 2px solid #ffa200;
+    border-left: 2px solid #ffa200;
+}
+
+.skill-title {
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.skill {
+    padding: 60px 50px;
+}
+
+.skill-desc {
+    padding-bottom: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.list-title {
+    margin-bottom: 10px;
+    color: #ffa200;
+}
+
+.tools {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #ffa200;
+}
+
+.craft-card {
+    border: 2px solid #ffa200;
+    border-radius: 15px;
+    height: 250px;
+    width: 200px;
+    margin: 20px;
+}
+
+.craft-box {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 100%;
+}
+
+.crafts {
+    position: relative;
+    top: -100px;
+
+}
+
+.dash {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+.about-me-box {
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    height: 250px;
+    width: 500px;
+}
+
+
+.educ-add-content, .org-add-content{
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    height: 40px;
+    background-color: #191919;
+    color: #ffffff;
+}
+
+.about-me-input, .artist-skill-desc, .frontend-skill-desc, .entre-skill-desc{
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    background-color: #191919;
+    color: #ffffff;
+}
+
+.artist-skill-desc, .frontend-skill-desc, .entre-skill-desc{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.educ-add-content:focus, .org-add-content:focus, .about-me-input:focus,
+.artist-skill-desc:focus, .frontend-skill-desc:focus, .entre-skill-desc:focus,
+.artist-list:focus, .frontend-list:focus, .entre-list:focus, .skill-input:focus {
+    background-color: #191919;
+    border-color: #ffa200;
+    color: #ffffff;
+    box-shadow: 0 0 7px #fc9403;
+}
+
+.about-me-btns {
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.btn {
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.educ-add-btn, .org-add-btn {
+    margin-right: 25px;
+    height: 40px;
+    width: 40px;
+    padding: 0%;
+}
+
+.educ-container{
+    margin-top: 90px;
+    margin-bottom: 50px;
+}
+
+.btn-primary {
+    background-color: #ffa200 !important;
+    border: none;
+    
+}
+
+.btn-primary:focus, .btn-primary:hover {
+    box-shadow: 0 0 7px #fc9403;
+}
+
+
+
+.skills-box {
+    margin-top: 80px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 5px;
+    
+}
+
+.artist-desc-btns, .frontend-desc-btns, .entre-desc-btns {
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.list-edit-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.artist-list, .frontend-list, .entre-list, .skill-input{
+    width: 80%;
+    height: 40px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    background-color: #191919;
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.skill-input {
+    margin-right: 0px;
+}
+
+.add-tool-container {
+    margin-top: 20px;
+}
+
+
+
+.title {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.dashboard-title {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    font-weight: 800;
+    color: #ffa200;
+    font-size: 75px;
+    text-align: center;
+}
+
+.tools-title {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+
+.artist-add-btn, .entre-add-btn, .frontend-add-btn{
+    margin-right: 55px;
+    height: 30px;
+    width: 30px;
+    padding: 0%;
+    margin-top: 5px;
+
+}
+
+.skills-save-btn {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.my-craft-title {
+    margin-top: 150px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.crafts-box {
+    margin-top: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 5px;
+}
+
+.dashboard-box {
+    border-radius: 30px;
+    padding: 20px 100px;
+    margin: 100px auto;
+    box-shadow: 0 0 20px #fc9403;
+    width: 100%;
+}

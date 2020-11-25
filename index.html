@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>Resume</title>
+    <title>Russ Henson</title>
 </head>
 <body>
-
-    <!-- Just an image -->
+    
     <div class="container login-icon">
         <nav class="nav justify-content-end">
             <a class="navbar-login" href="login.html">
-                <img src="/CCCAPDEV-MP1-Resume/icons/user.svg" alt="User-login">
+                <img src="/CCCAPDEV-MP1-Resume/icons/user.svg" class="user-icon" alt="User-login">
             </a>
         </nav>
     </div>
@@ -25,7 +24,7 @@
         <section class="intro-page">
             
             <h1 class="text-uppercase hello">Hello,<br>I'm Russ.</h1>
-            <h4 class="front-end">Front-end developer | Enterpreneur</h3>
+            <h4 class="desc">Front-end developer | Entrepreneur</h3>
         </section>
         
     </div>
@@ -33,7 +32,7 @@
     <div class="container mw-100 p-3 about-me-info">
         <section class="about-me">
             <h2 class="text-uppercase text-center">About me</h2>
-            <p class="text-center">I am a freelance front-end developer and enterpreneur. I love making my <br>ideas into reality. Collaborating and braingstorming is also my thing. <br>I like exchanging ideas with people and solving problems.</p>
+            <p class="text-center">I am a freelance front-end developer and entrepreneur. I love making my <br>ideas into reality. Collaborating and braingstorming is also my thing. <br>I like exchanging ideas with people and solving problems.</p>
         </section>
         <section class="education">
             <h2 class="text-uppercase text-center">Education</h2>
@@ -46,21 +45,21 @@
             <h2 class="text-uppercase text-center">Organizations</h2>
             <ul class="list-unstyled text-center">
                 <li>Philippine Web Designers Organization</li>
-                <li>The Enterpreneur's Club</li>
-                <li>Enterpreneur's Organization</li>
+                <li>The Entrepreneur's Club</li>
+                <li>Entrepreneur's Organization</li>
             </ul>
         </section>
     </div>
 
     <div class="container box">
-        <div class="row">
-            <div class="col-sm text-center" id="artist">
-                <i></i>
-                <h5 class="text-uppercase">artist</h5>
-                <p>I value and appreciate art in both web design and visual arts.</p>
-                <h6>Things I enjoy creating:</h6>
+        <div class="row skills">
+            <div class="col-sm text-center artist skill" id="artist">
+                <img src="/CCCAPDEV-MP1-Resume/icons/designer.svg" class="icon artist-icon" alt="icon">
+                <h5 class="text-uppercase skill-title">artist</h5>
+                <p class="skill-desc">I value and appreciate art in both web design and visual arts.</p>
+                <h6 class="list-title">Things I enjoy creating:</h6>
                 <p>Graphic arts, UI/UX design, Apps</p>
-                <h6>Art tools:</h6>
+                <h6 class="tools">Art tools:</h6>
                 <ul class="list-unstyled">
                     <li>Photoshop</li>
                     <li>Illustrator</li>
@@ -68,13 +67,13 @@
                     <li>Adobe XD</li>
                 </ul>
             </div>
-            <div class="col-sm text-center border-right border-left" id="front-end">
-                <i></i>
-                <h5 class="text-uppercase">front-end developer</h5>
-                <p>I like to code my ideas from scratch and bring them to reality.</p>
-                <h6>Languanges I Speak:</h6>
+            <div class="col-sm text-center front-end skill" id="front-end">
+                <img src="/CCCAPDEV-MP1-Resume/icons/frontend.svg" class="icon frontend-icon" alt="icon">
+                <h5 class="text-uppercase skill-title">front-end developer</h5>
+                <p class="skill-desc">I like to code my ideas from scratch and bring them to reality.</p>
+                <h6 class="list-title">Languanges I Speak:</h6>
                 <p>Javascript, Java, Python, C, Php</p>
-                <h6>Dev tools:</h6>
+                <h6 class="tools">Dev tools:</h6>
                 <ul class="list-unstyled">
                     <li>VS Code</li>
                     <li>Github</li>
@@ -83,13 +82,13 @@
                     <li>IntelliJ</li>
                 </ul>
             </div>
-            <div class="col-sm text-center" id="enterpreneur">
-                <i></i>
-                <h5 class="text-uppercase text-center">enterpreneur</h5>
-                <p>I love to create startups from my ideas, and exchanging ideas from others.</p>
-                <h6>Startups I started:</h6>
+            <div class="col-sm text-center entrepreneur skill" id="entrepreneur">
+                <img src="/CCCAPDEV-MP1-Resume/icons/entrepreneur.svg" class="icon entrepreneur-icon" alt="icon">
+                <h5 class="text-uppercase skill-title">entrepreneur</h5>
+                <p class="skill-desc">I love to create startups from my ideas.</p>
+                <h6 class="list-title">Startups I started:</h6>
                 <p>ArtX, Steezy, Bids</p>
-                <h6>Tools:</h6>
+                <h6 class="tools">Tools:</h6>
                 <ul class="list-unstyled">
                     <li>Brain</li>
                     <li>Ideas</li>
@@ -101,11 +100,36 @@
         </div>
     </div>
 
-    <div class="container">
-        <section class="crafts text-center">
-            <h2 class="text-uppercase">My Craft</h2>
+    <div class="container crafts">
+        <section class="text-center">
+            <h2 class="text-uppercase my-craft">My Craft</h2>
             <p>Here are few design projects and startup businesses I've build.</p>
         </section>
+
+        <div class="crafts-box">
+            <div class="row justify-content-between w-100">
+                <div class="col-md craft-card">
+                    1
+                </div>
+                <div class="col-md craft-card">
+                    2
+                </div>
+                <div class="col-md craft-card">
+                    3
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md craft-card">
+                    4
+                </div>
+                <div class="col-md craft-card">
+                    5
+                </div>
+                <div class="col-md craft-card">
+                    6
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     
@@ -115,6 +139,9 @@
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
