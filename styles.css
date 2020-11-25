@@ -252,10 +252,14 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 
 
 
-.title {
+.title, .links-title {
     margin-bottom: 20px;
     font-weight: 700;
     text-align: center;
+}
+
+.links-title {
+    margin-top: 130px;
 }
 
 .dashboard-title {
@@ -311,4 +315,10 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
     margin: 100px auto;
     box-shadow: 0 0 20px #fc9403;
     width: 100%;
+}
+
+.links-box {
+    border: 2px solid #fff;
+    width: 50%;
+    margin: auto;
 }
