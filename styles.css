@@ -1,4 +1,4 @@
-
+/* index.html css*/
 
 html, body {
     background-color: #191919;
@@ -16,6 +16,7 @@ html, body {
     height: 40px;
     width: 40px;
 }
+
 
 .login-button {
     background-image: url('/CCCAPDEV-MP1-Resume/icons/user.svg');
@@ -63,6 +64,7 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
     border-radius: 15px;
     top: -170px;
     background-color: #191919;
+    padding-bottom: 60px;
 }
 
 .skills{
@@ -129,6 +131,55 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 
 }
 
+.my-crafts-box {
+    justify-content: center;
+    padding: auto;
+    margin: auto;
+}
+
+footer {
+    display: block;
+    width: auto;
+    height: 350px;
+    background-color: #212121;
+    padding-top: 40px;
+    margin-top: 80px;
+    justify-content: center;
+}
+
+.footercontainer {
+    text-align: center;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+.link-icons {
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.linkicon {
+    border: 2px solid #fff;
+    border-radius: 50px;
+    padding: 8px;
+    margin: 15px;
+}
+
+.linkicon:hover, .linkicon:active {
+    border-color: #ffa200;
+    background-color: #ffa200;
+
+}
+
+
+
+.copyright {
+    font-size: 14px;
+    padding-top: 45px;
+}
+
+/* edit.html css*/
+
 .dash {
     display: block;
     margin-left: auto;
@@ -152,7 +203,8 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
     color: #ffffff;
 }
 
-.about-me-input, .artist-skill-desc, .frontend-skill-desc, .entre-skill-desc{
+.about-me-input, .artist-skill-desc, .frontend-skill-desc, .entre-skill-desc,
+.linkinput{
     border: 2px solid #ffffff;
     border-radius: 25px;
     background-color: #191919;
@@ -167,7 +219,8 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 
 .educ-add-content:focus, .org-add-content:focus, .about-me-input:focus,
 .artist-skill-desc:focus, .frontend-skill-desc:focus, .entre-skill-desc:focus,
-.artist-list:focus, .frontend-list:focus, .entre-list:focus, .skill-input:focus {
+.artist-list:focus, .frontend-list:focus, .entre-list:focus, .skill-input:focus,
+.linkinput:focus {
     background-color: #191919;
     border-color: #ffa200;
     color: #ffffff;
@@ -263,7 +316,7 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 }
 
 .dashboard-title {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 70px;
     font-weight: 800;
     color: #ffa200;
@@ -311,7 +364,7 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 
 .dashboard-box {
     border-radius: 30px;
-    padding: 20px 100px;
+    padding: 60px 100px;
     margin: 100px auto;
     box-shadow: 0 0 20px #fc9403;
     width: 100%;
@@ -319,6 +372,28 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
 
 .links-box {
     border: 2px solid #fff;
-    width: 50%;
-    margin: auto;
+    border-radius: 20px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 15px 40px;
+    margin-bottom: 10px;
 }
+
+.linkcontainer {
+    margin: 18px 0px;
+}
+
+.linkinput {
+    margin-left: 20px;
+}
+
+.linkscontainer {
+    border-radius: 20px;
+    margin: auto;
+    width: 60%;
+    margin-bottom: 60px;
+    padding: 0%;
+}
+
