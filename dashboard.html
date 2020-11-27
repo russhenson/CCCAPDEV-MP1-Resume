@@ -13,6 +13,23 @@
 
     <div class="container dashboard-box">
 
+        <div class="container navcontainer">
+            <div class="row navi-btns">
+                <a href="/CCCAPDEV-MP1-Resume/index.html">
+                    <button type="button" class="navibtn btn btn-secondary active">
+                        
+                        Home
+                    </button>
+                </a>
+                <a href="/CCCAPDEV-MP1-Resume/edit.html">
+                    <button type="button" class="navibtn btn btn-secondary active">
+                        Log out
+                    </button>
+                </a>
+            </div>
+
+        </div>
+
         <div class="container">
             <h1 class="text-uppercase dashboard-title">Dashboard</h1>
         </div>
@@ -94,7 +111,7 @@
                         </div>
                         -->
                         <h6 class="list-edit-title">Things I enjoy creating:</h6>
-                        <input type="text" id="artist-list" class="form-control artist-list">
+                        <input type="text" id="artist-list" value="" class="form-control artist-list">
 
                         <div class="tools-container">
                             <h6 class="tools-title">Art tools:</h6>
@@ -266,10 +283,9 @@
                     <img src="/CCCAPDEV-MP1-Resume/icons/save.svg" alt="save">
                 </button>
             </div>
-
-            
-            
         </div>
+
+        
 
     </div>
 
@@ -281,8 +297,8 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -302,7 +318,7 @@
     firebase.initializeApp(firebaseConfig);
     </script>
 
-    <script src="/CCCAPDEV-MP1-Resume/script.js"></script>
+    <script text="text/javacript" src="/CCCAPDEV-MP1-Resume/script.js"></script>
 
 </body>
 </html>

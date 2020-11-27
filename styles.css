@@ -178,7 +178,7 @@ footer {
     padding-top: 45px;
 }
 
-/* edit.html css*/
+/* dashboard.html css*/
 
 .dash {
     display: block;
@@ -208,7 +208,15 @@ footer {
     border: 2px solid #ffffff;
     border-radius: 25px;
     background-color: #191919;
-    color: #ffffff;
+    color: #c7c7c7;
+    padding: 15px 20px;
+}
+
+.artist-list, .frontend-list, .entre-list {
+    font-size: 12px;
+    padding: auto !important;
+    color: #c7c7c7;
+    text-align: center;
 }
 
 .artist-skill-desc, .frontend-skill-desc, .entre-skill-desc{
@@ -397,3 +405,116 @@ footer {
     padding: 0%;
 }
 
+.navcontainer {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.navibtn {
+    justify-content: center;
+    padding: auto;
+    margin: 6px;
+    border: 2px solid #ffa200 !important;
+    background-color: #191919 !important;
+}
+
+.navibtn:hover{
+    background-color:#ffa200 !important;
+}
+
+.navi-btns {
+    margin-bottom: 60px;
+    margin-left: 80%;
+}
+
+/*edit.html css*/
+
+.logincontainer {
+    margin: auto;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 200px;
+}
+
+.loginbox {
+    border: 2px solid #ffa200;
+    border-radius: 20px;;
+    justify-content: center;
+    padding: auto;
+    margin: auto;
+    width: 40%;
+    height: 400px;
+
+}
+
+.logintitle {
+    font-weight: 700;
+    text-align: center;
+    padding-top: 45px;
+}
+
+.formcontainer {
+    width: 100%;
+    margin: 40px auto;
+    padding: auto;
+
+
+}
+
+.emailform, .passwordform {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.loginbtncontainer {
+    
+    margin: 70px auto 40px auto;
+    padding: auto;
+    text-align: center;
+}
+
+.loginbtn {
+    
+    background-color: #ffa200;
+    border-radius: 20px;
+    border: none;
+    width: 93%;
+    height: 40px;
+    color: #fff;
+}
+
+.loginbtn:hover {
+    box-shadow: 0 0 10px #ffa200;
+    color: #fff;
+}
+
+.email, .password {
+    background-color: #333333;
+    border-radius: 20px;
+    border: none;
+    width: 93%;
+    height: 40px;
+    color: #fff;
+    padding-left: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.email:focus, .password:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px #ffa200;
+}
+
+.closeicon {
+    margin-top: 10px;
+}
+
+.errorDiv {
+    width: auto;
+    position: absolute;
+    margin-left: 30px;
+    font-size: 15px;
+   
+}
