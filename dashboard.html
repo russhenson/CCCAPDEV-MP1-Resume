@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <textarea class="form-control about-me-input" id="about-me-input" cols="30" rows="10"></textarea>
                         <div class="about-me-btns float-right" >
-                            <button type="submit" class="btn btn-primary active">Save 
+                            <button type="submit" class="btn btn-primary" id="about-me-save">Save 
                                 <img src="/CCCAPDEV-MP1-Resume/icons/save.svg" alt="save">
                             </button>
                         </div>
@@ -54,12 +54,34 @@
                 <div class="container educ-container">
                     <h4 class="text-uppercase title">Education</h4>
                     <div class="col-md educ-content">
-                        <ul class="list-unstyled">
-                            <li>De La Salle University, Bachelor's Degree in Computer Science</li>
-                            <li>General Assembly Singapore, Front-end Developer</li>
+                        <ul class="list-unstyled" id="educ-list-container">
+                            <!--
+                            <li class="educ-list" id="educ-list">
+                                <input type="text" class="educ-item" id="educ-item">
+                                <button class="btn float-right list-delete-btn">
+                                    <img src="/CCCAPDEV-MP1-Resume/icons/delete.svg" alt="delete">
+                                </button>
+                                <button class="btn float-right list-check-btn">
+                                    <img src="/CCCAPDEV-MP1-Resume/icons/check.svg" alt="check">
+                                </button>
+                                
+                            </li>
+                            
+                            <li class="educ-list" id="educ-list">
+                                <input type="text" class="educ-item" id="educ-item">
+                                <button class="btn float-right list-delete-btn">
+                                    <img src="/CCCAPDEV-MP1-Resume/icons/delete.svg" alt="delete">
+                                </button>
+                                <button class="btn float-right list-check-btn">
+                                    <img src="/CCCAPDEV-MP1-Resume/icons/check.svg" alt="check">
+                                </button>
+                                
+                            </li>
+
+                            -->
                         </ul>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row list-add-div">
                         <div class="col">
                             <input type="text" class="form-control educ-add-content" id="educ-input">
                         </div>
@@ -75,13 +97,12 @@
                 <div class="container org-container">
                     <h4 class="text-uppercase title">Organization</h4>
                     <div class="col-md org-content">
-                        <ul>
-                            <li>Philippine Web Designers Organization</li>
-                            <li>The Entrepreneur's Club</li>
-                            <li>Entrepreneur's Organization</li>
+                        <ul class="list-unstyled" id="org-list-container">
+                          <!--insert list here-->
+                            
                         </ul>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row list-add-div">
                         <div class="col">
                             <input type="text" class="form-control org-add-content" id="org-input">
                         </div>
@@ -115,12 +136,18 @@
 
                         <div class="tools-container">
                             <h6 class="tools-title">Art tools:</h6>
-                            <ul class="list-unstyled">
-                                <li>Photoshop</li>
-                                <li>Illustrator</li>
-                                <li>Figma</li>
-                                <li>Adobe XD</li>
-                                <li>Blender</li>
+                            <ul class="list-unstyled artist-tools" id="artist-tools">
+                                <!--
+                                <li class="tool" id="arttool">
+                                    <input type="text" class="art-item" id="art-item">
+                                    <button class="btn float-right delete-btn">
+                                        <img src="/CCCAPDEV-MP1-Resume/icons/delete.svg" alt="delete">
+                                    </button>
+                                    <button class="btn float-right check-btn">
+                                        <img src="/CCCAPDEV-MP1-Resume/icons/check.svg" alt="check">
+                                    </button>
+                                </li>
+                            -->
                             </ul>
                         </div>
                         
@@ -155,12 +182,18 @@
 
                         <div class="tools-container">
                             <h6 class="tools-title">Dev tools:</h6>
-                            <ul class="list-unstyled">
-                                <li>VS Code</li>
-                                <li>Github</li>
-                                <li>Bootstrap</li>
-                                <li>Xcode</li>
-                                <li>IntelliJ</li>
+                            <ul class="list-unstyled frontend-tools" id="frontend-tools">
+                                <!--
+                                <li class="tool" id="devtool">
+                                    <input type="text" class="dev-item" id="dev-item">
+                                    <button class="btn float-right delete-btn">
+                                        <img src="/CCCAPDEV-MP1-Resume/icons/delete.svg" alt="delete">
+                                    </button>
+                                    <button class="btn float-right check-btn">
+                                        <img src="/CCCAPDEV-MP1-Resume/icons/check.svg" alt="check">
+                                    </button>
+                                </li>
+                                -->
                             </ul>
                         </div>
                         
@@ -194,12 +227,9 @@
 
                         <div class="tools-container">
                             <h6 class="tools-title">Tools:</h6>
-                            <ul class="list-unstyled">
-                                <li>Brain</li>
-                                <li>Ideas</li>
-                                <li>Myself</li>
-                                <li>Brainstorm</li>
-                                <li>Other people</li>
+                            <ul class="list-unstyled entre-tools" id="entre-tools">
+                                
+                                
                             </ul>
                         </div>
                         

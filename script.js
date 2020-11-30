@@ -42,6 +42,29 @@ function getAboutMe() {
 }
 
 function saveAboutMe() {
+    var aboutMeRef = db.collection("about-me").doc("about-me");
+    var aboutMeTextarea = document.getElementById("about-me-input");
+
+    /*
+    document.getElementById("about-me-save").disabled = true;
+    aboutMeTextarea.addEventListener("input", (Event) => {
+        document.getElementById("about-me-save").disabled = false;
+    });
+    */
+
+    
+    aboutMeRef.onSnapshot(function(doc){
+        if(doc.data().description === aboutMeTextarea.value){
+            document.getElementById("about-me-save").disabled = true;
+        }
+        else {
+
+            document.getElementById("about-me-save").disabled = false;
+        }
+
+    });
+    
+    console.log(aboutMeTextarea.value);
 
 }
 
@@ -58,6 +81,89 @@ saveAboutMe
 
 */
 
+
+//render education list
+function getEducList() {
+    
+    db.collection("education").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            for(var i = 0;  i < (doc.data().educlist.length); i++){
+                var educList = document.createElement("li");
+                var educItem = document.createElement("input");
+                var deleteBtn = document.createElement("button");
+                var deleteIcon = document.createElement("img");
+                var addBtn = document.createElement("button");
+                var addIcon = document.createElement("img");
+
+                educList.className = "educ-list";
+                educItem.className = "educ-item";
+                deleteBtn.className = "btn float-right list-delete-btn";
+                addBtn.className = "btn float-right list-check-btn";
+
+                educItem.type = "text";
+
+                deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
+                addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+                educList.appendChild(educItem);
+                educList.appendChild(deleteBtn);
+                educList.appendChild(addBtn);
+
+                deleteBtn.appendChild(deleteIcon);
+                addBtn.appendChild(addIcon);
+
+                document.getElementById("educ-list-container").appendChild(educList);
+
+                educItem.value = doc.data().educlist[i];
+            }
+                     
+        });
+    });
+    
+}
+
+
+
+//render organizations list
+function getOrgList() {
+    db.collection("organizations").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            for(var i = 0;  i < (doc.data().orglist.length); i++){
+                var orgList = document.createElement("li");
+                var orgItem = document.createElement("input");
+                var deleteBtn = document.createElement("button");
+                var deleteIcon = document.createElement("img");
+                var addBtn = document.createElement("button");
+                var addIcon = document.createElement("img");
+
+                orgList.className = "org-list";
+                orgItem.className = "org-item";
+                deleteBtn.className = "btn float-right list-delete-btn";
+                addBtn.className = "btn float-right list-check-btn";
+
+                orgItem.type = "text";
+
+                deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
+                addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+                orgList.appendChild(orgItem);
+                orgList.appendChild(deleteBtn);
+                orgList.appendChild(addBtn);
+
+                deleteBtn.appendChild(deleteIcon);
+                addBtn.appendChild(addIcon);
+
+                document.getElementById("org-list-container").appendChild(orgList);
+
+                orgItem.value = doc.data().orglist[i];
+            }
+                     
+        });
+    });
+    
+}
 
 
 //render skills content
@@ -97,6 +203,116 @@ function getEntreContent() {
     });
 }
 
+function getArtTools() {
+
+    var skillsRef = db.collection("skills").doc("artist");
+
+    skillsRef.onSnapshot(function(doc){
+        for(var i = 0;  i < (doc.data().arttool.length); i++){
+            var artTool = document.createElement("li");
+            var artItem = document.createElement("input");
+            var deleteBtn = document.createElement("button");
+            var deleteIcon = document.createElement("img");
+            var addBtn = document.createElement("button");
+            var addIcon = document.createElement("img");
+
+            artTool.className = "tool";
+            artItem.className = "art-item";
+            deleteBtn.className = "btn float-right delete-btn";
+            addBtn.className = "btn float-right check-btn";
+
+            artItem.type = "text";
+
+            deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
+            addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            artTool.appendChild(artItem);
+            artTool.appendChild(deleteBtn);
+            artTool.appendChild(addBtn);
+
+            deleteBtn.appendChild(deleteIcon);
+            addBtn.appendChild(addIcon);
+
+            document.getElementById("artist-tools").appendChild(artTool);
+
+            artItem.value = doc.data().arttool[i];
+        }
+    });
+
+}
+
+function getDevTools() {
+    var skillsRef = db.collection("skills").doc("frontend");
+
+    skillsRef.onSnapshot(function(doc){
+        for(var i = 0;  i < (doc.data().devtool.length); i++){
+            var devTool = document.createElement("li");
+            var devItem = document.createElement("input");
+            var deleteBtn = document.createElement("button");
+            var deleteIcon = document.createElement("img");
+            var addBtn = document.createElement("button");
+            var addIcon = document.createElement("img");
+
+            devTool.className = "tool";
+            devItem.className = "dev-item";
+            deleteBtn.className = "btn float-right delete-btn";
+            addBtn.className = "btn float-right check-btn";
+
+            devItem.type = "text";
+
+            deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
+            addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            devTool.appendChild(devItem);
+            devTool.appendChild(deleteBtn);
+            devTool.appendChild(addBtn);
+
+            deleteBtn.appendChild(deleteIcon);
+            addBtn.appendChild(addIcon);
+
+            document.getElementById("frontend-tools").appendChild(devTool);
+
+            devItem.value = doc.data().devtool[i];
+        }
+    });
+}
+
+function getEntreTools() {
+    var skillsRef = db.collection("skills").doc("entrepreneur");
+
+    skillsRef.onSnapshot(function(doc){
+        for(var i = 0;  i < (doc.data().entretool.length); i++){
+            var entreTool = document.createElement("li");
+            var entreItem = document.createElement("input");
+            var deleteBtn = document.createElement("button");
+            var deleteIcon = document.createElement("img");
+            var addBtn = document.createElement("button");
+            var addIcon = document.createElement("img");
+
+            entreTool.className = "tool";
+            entreItem.className = "entre-item";
+            deleteBtn.className = "btn float-right delete-btn";
+            addBtn.className = "btn float-right check-btn";
+
+            entreItem.type = "text";
+
+            deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
+            addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            entreTool.appendChild(entreItem);
+            entreTool.appendChild(deleteBtn);
+            entreTool.appendChild(addBtn);
+
+            deleteBtn.appendChild(deleteIcon);
+            addBtn.appendChild(addIcon);
+
+            document.getElementById("entre-tools").appendChild(entreTool);
+
+            entreItem.value = doc.data().entretool[i];
+        }
+    });
+}
+
 
 
 //render links
@@ -124,4 +340,9 @@ getArtistContent();
 getFrontEndContent();
 getEntreContent();
 getLinks();
-
+getEducList();
+getOrgList();
+getArtTools();
+getDevTools();
+getEntreTools();
+saveAboutMe();

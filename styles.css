@@ -184,14 +184,7 @@ footer {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: auto;
-}
-
-.about-me-box {
-    border: 2px solid #ffffff;
-    border-radius: 15px;
-    height: 250px;
-    width: 500px;
+    width: 70%;
 }
 
 
@@ -201,6 +194,11 @@ footer {
     height: 40px;
     background-color: #191919;
     color: #ffffff;
+
+}
+
+.list-add-div {
+    margin-top: 35px;
 }
 
 .about-me-input, .artist-skill-desc, .frontend-skill-desc, .entre-skill-desc,
@@ -210,6 +208,29 @@ footer {
     background-color: #191919;
     color: #c7c7c7;
     padding: 15px 20px;
+}
+
+.educ-list, .org-list {
+    margin: 15px 0px;
+}
+
+.educ-item, .org-item {
+    width: 85%;
+    background-color: #191919;
+    border: none;
+    border-bottom: 1px solid #fff;
+    color: #c7c7c7;
+}
+
+.educ-item:focus, .org-item:focus {
+    border-bottom: 1px solid #ffa200;
+    outline: none;
+    color: #fff;
+}
+
+.list-delete-btn, .list-check-btn {
+    padding: 0px 2px;
+    margin: 0px 3px;
 }
 
 .artist-list, .frontend-list, .entre-list {
@@ -233,6 +254,38 @@ footer {
     border-color: #ffa200;
     color: #ffffff;
     box-shadow: 0 0 7px #fc9403;
+}
+
+.tools-container {
+    padding: 0px 18px;
+    margin: 0px 15px 0px 30px;
+}
+
+.artist-tools, .frontend-tools, .entre-tools {
+    text-align: left;
+}
+
+.tool {
+    margin: 10px 0px;
+}
+
+.art-item, .dev-item, .entre-item {
+    width: 70%;
+    color: #c7c7c7;
+    background-color: #191919;
+    border: none;
+    border-bottom: 1px solid #fff;
+    font-size: 14px;
+}
+
+.art-item:focus, .dev-item:focus, .entre-item:focus {
+    border-bottom: 1px solid #ffa200;
+    outline: none;
+    color: #fff;
+}
+
+.delete-btn, .check-btn {
+    padding: 0px 2px;
 }
 
 .about-me-btns {
@@ -308,7 +361,7 @@ footer {
 }
 
 .add-tool-container {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 
