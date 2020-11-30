@@ -235,8 +235,8 @@ footer {
 
 .artist-list, .frontend-list, .entre-list {
     font-size: 12px;
-    padding: auto !important;
-    color: #c7c7c7;
+    padding: 10px 0px !important;
+    color: #c7c7c7 !important;
     text-align: center;
 }
 
@@ -252,7 +252,7 @@ footer {
 .linkinput:focus {
     background-color: #191919;
     border-color: #ffa200;
-    color: #ffffff;
+    color: #ffffff !important;
     box-shadow: 0 0 7px #fc9403;
 }
 

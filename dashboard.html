@@ -40,7 +40,7 @@
                 <div class="container about-me-container">
                     <h4 class="text-uppercase title">About me</h4>
                     <div class="form-group">
-                        <textarea class="form-control about-me-input" id="about-me-input" cols="30" rows="10"></textarea>
+                        <textarea class="form-control about-me-input" id="about-me-input" cols="30" rows="6"></textarea>
                         <div class="about-me-btns float-right" >
                             <button type="submit" class="btn btn-primary" id="about-me-save">Save 
                                 <img src="/CCCAPDEV-MP1-Resume/icons/save.svg" alt="save">
@@ -132,7 +132,8 @@
                         </div>
                         -->
                         <h6 class="list-edit-title">Things I enjoy creating:</h6>
-                        <input type="text" id="artist-list" value="" class="form-control artist-list">
+                        <textarea id="artist-list" class="form-control artist-list" cols="30" rows="2"></textarea>
+                        
 
                         <div class="tools-container">
                             <h6 class="tools-title">Art tools:</h6>
@@ -178,8 +179,8 @@
                         </div>
                         -->
                         <h6 class="list-edit-title">Languanges I Speak:</h6>
-                        <input type="text" id="frontend-list" class="form-control frontend-list">
-
+                        <textarea id="frontend-list" class="form-control frontend-list" cols="30" rows="2"></textarea>
+                        
                         <div class="tools-container">
                             <h6 class="tools-title">Dev tools:</h6>
                             <ul class="list-unstyled frontend-tools" id="frontend-tools">
@@ -223,8 +224,7 @@
                         </div>
                         -->
                         <h6 class="list-edit-title">Startups I started:</h6>
-                        <input type="text" id="entre-list" class="form-control entre-list">
-
+                        <textarea id="entre-list" class="form-control entre-list" cols="30" rows="2"></textarea>
                         <div class="tools-container">
                             <h6 class="tools-title">Tools:</h6>
                             <ul class="list-unstyled entre-tools" id="entre-tools">
@@ -249,7 +249,7 @@
                 </div>
             </div>
             <div class="skills-save-btn float-right" >
-                <button type="submit" class="btn btn-primary active">Save 
+                <button type="submit" class="btn btn-primary active" id="skills-save-btn">Save 
                     <img src="/CCCAPDEV-MP1-Resume/icons/save.svg" alt="save">
                 </button>
             </div>

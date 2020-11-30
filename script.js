@@ -194,7 +194,7 @@ function getArtistContent() {
 
     artistRef.onSnapshot(function(doc) {
         artistTextArea.innerHTML = doc.data().description;
-        artistListInput.value = doc.data().create;
+        artistListInput.innerHTML = doc.data().create;
     });
 
 }
@@ -206,7 +206,7 @@ function getFrontEndContent() {
 
     frontEndRef.onSnapshot(function(doc){
         frontEndTextArea.innerHTML = doc.data().description;
-        frontEndListInput.value = doc.data().speak;
+        frontEndListInput.innerHTML = doc.data().speak;
     });
 
 }
@@ -218,7 +218,7 @@ function getEntreContent() {
 
     entreRef.onSnapshot(function(doc){
         entreTextArea.innerHTML = doc.data().description;
-        entreListInput.value = doc.data().start;
+        entreListInput.innerHTML = doc.data().start;
     });
 }
 
@@ -394,6 +394,65 @@ function addEntreTools() {
     });
 }
 
+//saVe skills
+function saveSkill() {
+    var artistRef = db.collection("skills").doc("artist");
+    var frontEndRef = db.collection("skills").doc("frontend");
+    var entreRef = db.collection("skills").doc("entrepreneur");
+
+    var artistSkillDesc = document.getElementById("artist-skill-desc");
+    var frontendSkillDesc = document.getElementById("frontend-skill-desc");
+    var entreSkillDesc = document.getElementById("entre-skill-desc");
+
+    var artistList = document.getElementById("artist-list");
+    var frontendList = document.getElementById("frontend-list");
+    var entreList = document.getElementById("entre-list");
+
+    var saveBtn = document.getElementById("skills-save-btn");
+
+    
+    saveBtn.disabled = true;
+    
+    var inputs = [artistSkillDesc, frontendSkillDesc, entreSkillDesc, artistList, frontendList, entreList];
+    
+    inputs.forEach(function(element){
+        element.addEventListener("input", function(){
+            saveBtn.disabled = false;
+
+            saveBtn.addEventListener("click", (Event) => {
+                artistRef.update({
+                    description: artistSkillDesc.value,
+                    create: artistList.value
+                })
+                .then(function() {
+                    location.reload();
+                });
+                
+                frontEndRef.update({
+                    description: frontendSkillDesc.value,
+                    speak: frontendList.value
+                })
+                .then(function() {
+                    location.reload();
+                });
+
+                entreRef.update({
+                    description: entreSkillDesc.value,
+                    start: entreList.value
+                })
+                .then(function() {
+                    location.reload();
+                });
+                
+
+            });
+            
+
+        })
+    });
+
+}
+
 
 
 //render links
@@ -434,3 +493,4 @@ addOrg();
 addArtTools();
 addDevTools();
 addEntreTools();
+saveSkill();
