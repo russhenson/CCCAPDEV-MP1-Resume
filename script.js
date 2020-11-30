@@ -28,13 +28,6 @@ function getAboutMe() {
     var aboutMeRef = db.collection("about-me").doc("about-me");
     var aboutMeTextarea = document.getElementById("about-me-input");
 
-    
-    // aboutMeRef.get().then(function(doc) {
-        
-    //     aboutMeTextarea.innerHTML = doc.data().description;
-
-    // });
-
     aboutMeRef.onSnapshot(function(doc) {
         aboutMeTextarea.innerHTML = doc.data().description;
     });
@@ -44,42 +37,29 @@ function getAboutMe() {
 function saveAboutMe() {
     var aboutMeRef = db.collection("about-me").doc("about-me");
     var aboutMeTextarea = document.getElementById("about-me-input");
+    var saveBtn = document.getElementById("about-me-save");
 
-    /*
-    document.getElementById("about-me-save").disabled = true;
+    
+    saveBtn.disabled = true;
     aboutMeTextarea.addEventListener("input", (Event) => {
-        document.getElementById("about-me-save").disabled = false;
-    });
-    */
+        saveBtn.disabled = false;
 
-    
-    aboutMeRef.onSnapshot(function(doc){
-        if(doc.data().description === aboutMeTextarea.value){
-            document.getElementById("about-me-save").disabled = true;
-        }
-        else {
+        saveBtn.addEventListener("click", (Event) => {
+            aboutMeRef.update({
+                description: aboutMeTextarea.value
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        });
 
-            document.getElementById("about-me-save").disabled = false;
-        }
-
-    });
-    
-    console.log(aboutMeTextarea.value);
+    });  
 
 }
-
-/*
-saveAboutMe
-- check if about-me data was changed
-- if yes:
-    - unable save button
-    - place data in the firebase
-    - render the new data in the textareabox (getAboutMe func)
-
-- if no:
-    - disable save button
-
-*/
 
 
 //render education list
@@ -123,6 +103,25 @@ function getEducList() {
     
 }
 
+//add education
+function addEducation() {
+    var educRef = db.collection("education").doc("education");
+    var educInput = document.getElementById("educ-input");
+    var addBtn = document.getElementById("educ-add-btn");
+
+    addBtn.addEventListener("click", (Event) => {
+        educRef.update({
+            educlist: firebase.firestore.FieldValue.arrayUnion(educInput.value)
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    });
+}
 
 
 //render organizations list
@@ -165,6 +164,26 @@ function getOrgList() {
     
 }
 
+//add Org
+function addOrg() {
+    var orgRef = db.collection("organizations").doc("organizations");
+    var orgInput = document.getElementById("org-input");
+    var addBtn = document.getElementById("org-add-btn");
+
+    addBtn.addEventListener("click", (Event) => {
+        orgRef.update({
+            orglist: firebase.firestore.FieldValue.arrayUnion(orgInput.value)
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    });
+}
+
 
 //render skills content
 function getArtistContent() {
@@ -203,6 +222,7 @@ function getEntreContent() {
     });
 }
 
+
 function getArtTools() {
 
     var skillsRef = db.collection("skills").doc("artist");
@@ -238,8 +258,29 @@ function getArtTools() {
             artItem.value = doc.data().arttool[i];
         }
     });
-
 }
+
+// add art tools
+function addArtTools() {
+    var artRef = db.collection("skills").doc("artist");
+    var artInput = document.getElementById("art-tools-input");
+    var addBtn = document.getElementById("artist-add-btn");
+
+    addBtn.addEventListener("click", (Event) => {
+        artRef.update({
+            arttool: firebase.firestore.FieldValue.arrayUnion(artInput.value)
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    });
+}
+
+
 
 function getDevTools() {
     var skillsRef = db.collection("skills").doc("frontend");
@@ -276,6 +317,26 @@ function getDevTools() {
         }
     });
 }
+
+function addDevTools() {
+    var devRef = db.collection("skills").doc("frontend");
+    var devInput = document.getElementById("dev-tools-input");
+    var addBtn = document.getElementById("frontend-add-btn");
+
+    addBtn.addEventListener("click", (Event) => {
+        devRef.update({
+            devtool: firebase.firestore.FieldValue.arrayUnion(devInput.value)
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    });
+}
+
 
 function getEntreTools() {
     var skillsRef = db.collection("skills").doc("entrepreneur");
@@ -314,6 +375,26 @@ function getEntreTools() {
 }
 
 
+function addEntreTools() {
+    var entreRef = db.collection("skills").doc("entrepreneur");
+    var entreInput = document.getElementById("entre-tools-input");
+    var addBtn = document.getElementById("entre-add-btn");
+
+    addBtn.addEventListener("click", (Event) => {
+        entreRef.update({
+            entretool: firebase.firestore.FieldValue.arrayUnion(entreInput.value)
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    });
+}
+
+
 
 //render links
 function getLinks() {
@@ -345,4 +426,11 @@ getOrgList();
 getArtTools();
 getDevTools();
 getEntreTools();
+
+
 saveAboutMe();
+addEducation();
+addOrg();
+addArtTools();
+addDevTools();
+addEntreTools();
