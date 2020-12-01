@@ -237,6 +237,8 @@ footer {
     outline: none !important;
 }
 
+
+
 .artist-list, .frontend-list, .entre-list {
     font-size: 12px;
     padding: 10px 0px !important;
@@ -320,7 +322,7 @@ footer {
     
 }
 
-.btn-primary:focus, .btn-primary:hover {
+.btn-primary:focus, .btn-primary:hover:enabled {
     box-shadow: 0 0 7px #fc9403;
 }
 

@@ -210,13 +210,7 @@ function removeEducation(educListID) {
         educRef.update({
             educlist: firebase.firestore.FieldValue.arrayRemove(educInput.value)
         })
-        .then(function() {
-            location.reload();
-            //console.log("Document successfully written!");
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
+        
         
 
     });
@@ -245,18 +239,28 @@ function getOrgList() {
                 orgItem.type = "text";
                 orgItem.id = "org-item"+i;
 
+                orgList.id = "org-list"+i;
+
                 deleteBtn.id = "org-delete"+i;
                 addBtn.id = "org-add"+i;
 
                 deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
                 addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
 
+                deleteBtn.setAttribute("onclick", "removeOrg(this.parentNode.id);");
+                addBtn.setAttribute("onclick", "saveEditedOrg(this.parentElement.firstChild.id);");
+                orgItem.setAttribute("oninput", "editOrg(this.id);");
+
+                addBtn.disabled = true;
+
                 orgList.appendChild(orgItem);
                 orgList.appendChild(deleteBtn);
                 orgList.appendChild(addBtn);
 
                 deleteBtn.appendChild(deleteIcon);
+                deleteBtn.type = "submit";
                 addBtn.appendChild(addIcon);
+                addBtn.type = "submit";
 
                 document.getElementById("org-list-container").appendChild(orgList);
 
@@ -274,9 +278,49 @@ function addOrg() {
     var orgInput = document.getElementById("org-input");
     var addBtn = document.getElementById("org-add-btn");
 
-    addBtn.addEventListener("click", (Event) => {
-        orgRef.update({
-            orglist: firebase.firestore.FieldValue.arrayUnion(orgInput.value)
+    addBtn.disabled = true;
+    orgInput.addEventListener("input", (Event) => {
+
+        addBtn.disabled = false;
+        addBtn.addEventListener("click", (Event) => {
+            orgRef.update({
+                orglist: firebase.firestore.FieldValue.arrayUnion(orgInput.value)
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        });
+    });
+}
+
+//edit org
+function editOrg(orgInputID) {
+    var addBtn = document.getElementById("org-add"+orgInputID[orgInputID.length-1]);
+
+    addBtn.disabled = false;
+}
+
+//save edited org
+function saveEditedOrg(orgInputID) {
+    var orgRef = db.collection("organizations").doc("organizations");
+    var orgInput = document.getElementById(orgInputID);
+    var index = orgInputID[orgInputID.length-1];
+
+    orgRef.onSnapshot(function(doc){
+        var tempArr = [];
+
+        for(var i = 0; i < doc.data().orglist.length; i++){
+            tempArr.push(doc.data().orglist[i]);
+        }
+
+        tempArr[index] = orgInput.value;
+
+        orgRef.set({
+            orglist: tempArr
         })
         .then(function() {
             location.reload();
@@ -285,16 +329,29 @@ function addOrg() {
         .catch(function(error) {
             console.error("Error writing document: ", error);
         });
-    });
-}
 
-//edit org
-function editOrg() {
+
+    });
 
 }
 
 //remove org
-function removeOrg() {
+function removeOrg(orgListID) {
+    var orgRef = db.collection("organizations").doc("organizations");
+
+    orgRef.onSnapshot(function(doc){
+        var inputIndex = orgListID[orgListID.length-1];
+        var orgInput = document.getElementById("org-item"+inputIndex);
+        var orgList = document.getElementById(orgListID);
+        orgList.remove();
+
+        orgRef.update({
+            orglist: firebase.firestore.FieldValue.arrayRemove(orgInput.value)
+        })
+        
+
+    });
+
 
 }
 
@@ -356,16 +413,30 @@ function getArtTools() {
             addBtn.className = "btn float-right check-btn";
 
             artItem.type = "text";
+            artItem.id = "art-item"+i;
+
+            artTool.id = "arttool"+i;
+
+            deleteBtn.id = "art-delete"+i;
+            addBtn.id = "art-add"+i;
 
             deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
             addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            deleteBtn.setAttribute("onclick", "removeArtTool(this.parentNode.id);");
+            addBtn.setAttribute("onclick", "saveEditedArtTool(this.parentElement.firstChild.id);");
+            artItem.setAttribute("oninput", "editArtTool(this.id);");
+
+            addBtn.disabled = true;
 
             artTool.appendChild(artItem);
             artTool.appendChild(deleteBtn);
             artTool.appendChild(addBtn);
 
             deleteBtn.appendChild(deleteIcon);
+            deleteBtn.type = "submit";
             addBtn.appendChild(addIcon);
+            addBtn.type = "submit";
 
             document.getElementById("artist-tools").appendChild(artTool);
 
@@ -374,15 +445,90 @@ function getArtTools() {
     });
 }
 
+
+
 // add art tools
 function addArtTools() {
     var artRef = db.collection("skills").doc("artist");
     var artInput = document.getElementById("art-tools-input");
     var addBtn = document.getElementById("artist-add-btn");
 
-    addBtn.addEventListener("click", (Event) => {
+    addBtn.disabled = true;
+
+    artInput.addEventListener("input", (Event) => {
+        addBtn.disabled = false;
+        addBtn.addEventListener("click", (Event) => {
+            artRef.update({
+                arttool: firebase.firestore.FieldValue.arrayUnion(artInput.value)
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        });
+    });
+
+    
+}
+
+//edit art tools
+function editArtTool(artToolInputID) {
+    var addBtn = document.getElementById("art-add"+artToolInputID[artToolInputID.length-1]);
+
+    addBtn.disabled = false;
+}
+
+//save edited art tools
+function saveEditedArtTool(artToolInputID) {
+    var artRef = db.collection("skills").doc("artist");
+    var artInput = document.getElementById(artToolInputID);
+    var index = artToolInputID[artToolInputID.length-1];
+
+    var artistTextArea = document.getElementById("artist-skill-desc");
+    var artistListInput = document.getElementById("artist-list");
+
+    artRef.onSnapshot(function(doc){
+        var tempArr = [];
+
+        for(var i = 0; i < doc.data().arttool.length; i++){
+            tempArr.push(doc.data().arttool[i]);
+        }
+
+        tempArr[index] = artInput.value;
+
+        artRef.set({
+            arttool: tempArr,
+            description: artistTextArea.value,
+            create: artistListInput.value
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+
+
+    });
+}
+
+
+//remove art tools
+function removeArtTool(artToolID) {
+    var artRef = db.collection("skills").doc("artist");
+
+    artRef.onSnapshot(function(doc){
+        var inputIndex = artToolID[artToolID.length-1];
+        var artInput = document.getElementById("art-item"+inputIndex);
+        var artTool = document.getElementById(artToolID);
+        artTool.remove();
+
         artRef.update({
-            arttool: firebase.firestore.FieldValue.arrayUnion(artInput.value)
+            arttool: firebase.firestore.FieldValue.arrayRemove(artInput.value)
         })
         .then(function() {
             location.reload();
@@ -393,7 +539,6 @@ function addArtTools() {
         });
     });
 }
-
 
 
 function getDevTools() {
@@ -414,16 +559,30 @@ function getDevTools() {
             addBtn.className = "btn float-right check-btn";
 
             devItem.type = "text";
+            devItem.id = "dev-item"+i;
+
+            devTool.id = "devtool"+i;
+
+            deleteBtn.id = "dev-delete"+i;
+            addBtn.id = "dev-add"+i;
 
             deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
             addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            deleteBtn.setAttribute("onclick", "removeDevTool(this.parentNode.id);");
+            addBtn.setAttribute("onclick", "saveEditedDevTool(this.parentElement.firstChild.id);");
+            devItem.setAttribute("oninput", "editDevTool(this.id);");
+
+            addBtn.disabled = true;
 
             devTool.appendChild(devItem);
             devTool.appendChild(deleteBtn);
             devTool.appendChild(addBtn);
 
             deleteBtn.appendChild(deleteIcon);
+            deleteBtn.type = "submit";
             addBtn.appendChild(addIcon);
+            addBtn.type = "submit";
 
             document.getElementById("frontend-tools").appendChild(devTool);
 
@@ -437,9 +596,82 @@ function addDevTools() {
     var devInput = document.getElementById("dev-tools-input");
     var addBtn = document.getElementById("frontend-add-btn");
 
-    addBtn.addEventListener("click", (Event) => {
+    addBtn.disabled = true;
+
+    devInput.addEventListener("input", (Event) => {
+        addBtn.disabled = false;
+        addBtn.addEventListener("click", (Event) => {
+            devRef.update({
+                devtool: firebase.firestore.FieldValue.arrayUnion(devInput.value)
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        });
+    });
+
+
+    
+}
+
+//edit dev tools
+function editDevTool(devToolInputID) {
+    var addBtn = document.getElementById("dev-add"+devToolInputID[devToolInputID.length-1]);
+
+    addBtn.disabled = false;
+}
+
+//save edited dev tools
+function saveEditedDevTool(devToolInputID) {
+    var devRef = db.collection("skills").doc("frontend");
+    var devInput = document.getElementById(devToolInputID);
+    var index = devToolInputID[devToolInputID.length-1];
+    var frontEndTextArea = document.getElementById("frontend-skill-desc");
+    var frontEndListInput = document.getElementById("frontend-list");
+
+    devRef.onSnapshot(function(doc){
+        var tempArr = [];
+
+        for(var i = 0; i < doc.data().devtool.length; i++){
+            tempArr.push(doc.data().devtool[i]);
+        }
+
+        tempArr[index] = devInput.value;
+
+        devRef.set({
+            devtool: tempArr,
+            description: frontEndTextArea.value,
+            speak: frontEndListInput.value
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+
+
+    });
+}
+
+
+//remove dev tools
+function removeDevTool(devToolID) {
+    var devRef = db.collection("skills").doc("frontend");
+
+    devRef.onSnapshot(function(doc){
+        var inputIndex = devToolID[devToolID.length-1];
+        var devInput = document.getElementById("dev-item"+inputIndex);
+        var devTool = document.getElementById(devToolID);
+        devTool.remove();
+
         devRef.update({
-            devtool: firebase.firestore.FieldValue.arrayUnion(devInput.value)
+            devtool: firebase.firestore.FieldValue.arrayRemove(devInput.value)
         })
         .then(function() {
             location.reload();
@@ -450,6 +682,7 @@ function addDevTools() {
         });
     });
 }
+
 
 
 function getEntreTools() {
@@ -470,16 +703,31 @@ function getEntreTools() {
             addBtn.className = "btn float-right check-btn";
 
             entreItem.type = "text";
+            entreItem.id = "entre-item"+i;
+
+            entreTool.id = "entretool"+i;
+
+            deleteBtn.id = "entre-delete"+i;
+            addBtn.id = "entre-add"+i;
 
             deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
             addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+            deleteBtn.setAttribute("onclick", "removeEntreTool(this.parentNode.id);");
+            addBtn.setAttribute("onclick", "saveEditedEntreTool(this.parentElement.firstChild.id);");
+            entreItem.setAttribute("oninput", "editEntreTool(this.id);");
+
+            addBtn.disabled = true;
 
             entreTool.appendChild(entreItem);
             entreTool.appendChild(deleteBtn);
             entreTool.appendChild(addBtn);
 
             deleteBtn.appendChild(deleteIcon);
+            deleteBtn.type = "submit";
             addBtn.appendChild(addIcon);
+            addBtn.type = "submit";
+
 
             document.getElementById("entre-tools").appendChild(entreTool);
 
@@ -494,9 +742,83 @@ function addEntreTools() {
     var entreInput = document.getElementById("entre-tools-input");
     var addBtn = document.getElementById("entre-add-btn");
 
-    addBtn.addEventListener("click", (Event) => {
+
+    addBtn.disabled = true;
+
+    entreInput.addEventListener("input", (Event) => {
+        addBtn.disabled = false;
+        addBtn.addEventListener("click", (Event) => {
+            entreRef.update({
+                entretool: firebase.firestore.FieldValue.arrayUnion(entreInput.value)
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        });
+    });
+
+
+    
+}
+
+//edit entre tools
+function editEntreTool(entreToolInputID) {
+    var addBtn = document.getElementById("entre-add"+entreToolInputID[entreToolInputID.length-1]);
+
+    addBtn.disabled = false;
+}
+
+//save edited entre tools
+function saveEditedEntreTool(entreToolInputID) {
+    var entreRef = db.collection("skills").doc("entrepreneur");
+    var entreInput = document.getElementById(entreToolInputID);
+    var index = entreToolInputID[entreToolInputID.length-1];
+    var entreTextArea = document.getElementById("entre-skill-desc");
+    var entreListInput = document.getElementById("entre-list");
+
+    entreRef.onSnapshot(function(doc){
+        var tempArr = [];
+
+        for(var i = 0; i < doc.data().entretool.length; i++){
+            tempArr.push(doc.data().entretool[i]);
+        }
+
+        tempArr[index] = entreInput.value;
+
+        entreRef.set({
+            entretool: tempArr,
+            description: entreTextArea.value,
+            start: entreListInput.value
+        })
+        .then(function() {
+            location.reload();
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+
+
+    });
+}
+
+
+//remove entre tools
+function removeEntreTool(entreToolID) {
+    var entreRef = db.collection("skills").doc("entrepreneur");
+
+    entreRef.onSnapshot(function(doc){
+        var inputIndex = entreToolID[entreToolID.length-1];
+        var entreInput = document.getElementById("entre-item"+inputIndex);
+        var entreTool = document.getElementById(entreToolID);
+        entreTool.remove();
+
         entreRef.update({
-            entretool: firebase.firestore.FieldValue.arrayUnion(entreInput.value)
+            entretool: firebase.firestore.FieldValue.arrayRemove(entreInput.value)
         })
         .then(function() {
             location.reload();
@@ -507,6 +829,7 @@ function addEntreTools() {
         });
     });
 }
+
 
 //saVe skills
 function saveSkill() {
@@ -643,4 +966,3 @@ addDevTools();
 addEntreTools();
 saveSkill();
 saveLinks();
-removeEducation();
