@@ -233,6 +233,10 @@ footer {
     margin: 0px 3px;
 }
 
+.list-delete-btn:active {
+    outline: none !important;
+}
+
 .artist-list, .frontend-list, .entre-list {
     font-size: 12px;
     padding: 10px 0px !important;

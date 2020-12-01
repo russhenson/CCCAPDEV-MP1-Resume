@@ -82,16 +82,30 @@ function getEducList() {
                 addBtn.className = "btn float-right list-check-btn";
 
                 educItem.type = "text";
+                educItem.id = "educ-item"+i;
+
+                educList.id = "educ-list"+i;
+
+                deleteBtn.id = "educ-delete"+i;
+                addBtn.id = "educ-add"+i;
 
                 deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
                 addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
+
+                deleteBtn.setAttribute("onclick", "removeEducation(this.parentNode.id);");
+                addBtn.setAttribute("onclick", "saveEditedEduc(this.parentElement.firstChild.id);");
+                educItem.setAttribute("oninput", "editEducation(this.id);");
+
+                addBtn.disabled = true;
 
                 educList.appendChild(educItem);
                 educList.appendChild(deleteBtn);
                 educList.appendChild(addBtn);
 
                 deleteBtn.appendChild(deleteIcon);
+                deleteBtn.type = "submit";
                 addBtn.appendChild(addIcon);
+                addBtn.type = "submit";
 
                 document.getElementById("educ-list-container").appendChild(educList);
 
@@ -109,9 +123,59 @@ function addEducation() {
     var educInput = document.getElementById("educ-input");
     var addBtn = document.getElementById("educ-add-btn");
 
-    addBtn.addEventListener("click", (Event) => {
-        educRef.update({
-            educlist: firebase.firestore.FieldValue.arrayUnion(educInput.value)
+
+    addBtn.disabled = true;
+    educInput.addEventListener("input", (Event) => {
+
+        addBtn.disabled = false;
+        addBtn.addEventListener("click", (Event) => {
+        
+            educRef.update({
+                educlist: firebase.firestore.FieldValue.arrayUnion(educInput.value)
+            })
+            .then(function() {
+                location.reload();
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            
+            
+            
+        });
+    });
+
+    
+}
+
+//edit education
+function editEducation(educInputID) {
+    var addBtn = document.getElementById("educ-add"+educInputID[educInputID.length-1]);
+
+    addBtn.disabled = false;
+}
+
+//save edited education
+function saveEditedEduc(educInputID){
+    var educRef = db.collection("education").doc("education");
+    var educInput = document.getElementById(educInputID);
+    
+    var index = educInputID[educInputID.length-1];
+
+    
+    educRef.onSnapshot(function(doc){
+        var tempArr = [];
+        for(var i = 0; i < (doc.data().educlist.length); i++){
+            tempArr.push(doc.data().educlist[i]);
+
+        }
+
+        tempArr[index] = educInput.value;
+        //console.log("within snapshot: "+tempArr.toString());
+
+        educRef.set({
+            educlist: tempArr
         })
         .then(function() {
             location.reload();
@@ -121,6 +185,42 @@ function addEducation() {
             console.error("Error writing document: ", error);
         });
     });
+    
+
+
+    //console.log("after snapshot: "+tempArr.toString());
+
+}
+    
+
+
+//remove education
+function removeEducation(educListID) {
+    var educRef = db.collection("education").doc("education");
+
+    educRef.onSnapshot(function(doc){
+        var inputIndex = educListID[educListID.length - 1];
+        var educInput = document.getElementById("educ-item"+inputIndex);
+        var educList = document.getElementById(educListID);
+        educList.remove();
+
+        console.log(educListID);
+        console.log(inputIndex);
+
+        educRef.update({
+            educlist: firebase.firestore.FieldValue.arrayRemove(educInput.value)
+        })
+        .then(function() {
+            location.reload();
+            //console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+        
+
+    });
+
 }
 
 
@@ -143,6 +243,10 @@ function getOrgList() {
                 addBtn.className = "btn float-right list-check-btn";
 
                 orgItem.type = "text";
+                orgItem.id = "org-item"+i;
+
+                deleteBtn.id = "org-delete"+i;
+                addBtn.id = "org-add"+i;
 
                 deleteIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/delete.svg");
                 addIcon.setAttribute("src", "/CCCAPDEV-MP1-Resume/icons/check.svg");
@@ -182,6 +286,16 @@ function addOrg() {
             console.error("Error writing document: ", error);
         });
     });
+}
+
+//edit org
+function editOrg() {
+
+}
+
+//remove org
+function removeOrg() {
+
 }
 
 
@@ -472,6 +586,40 @@ function getLinks() {
 
 }
 
+//save links
+function saveLinks() {
+    var fblink = document.getElementById("fblink");
+    var twitterlink = document.getElementById("twitterlink");
+    var githublink = document.getElementById("githublink");
+    var linkedinlink = document.getElementById("linkedinlink");
+    var linksRef = db.collection("links").doc("links");
+    var saveBtn = document.getElementById("links-save-btn");
+    var linkInputs = [fblink, twitterlink, githublink, linkedinlink];
+
+    saveBtn.disabled = true;
+    linkInputs.forEach(function(element){
+        element.addEventListener("input", function(){
+            saveBtn.disabled = false;    
+
+            saveBtn.addEventListener("click", (Event) => {
+                linksRef.update({
+                    fb: fblink.value,
+                    twitter: twitterlink.value,
+                    github: githublink.value,
+                    linkedin: linkedinlink.value
+                })
+                .then(function() {
+                    location.reload();
+                });
+                
+                
+            });
+
+        });
+    });
+
+}
+
 
 
 // main
@@ -494,3 +642,5 @@ addArtTools();
 addDevTools();
 addEntreTools();
 saveSkill();
+saveLinks();
+removeEducation();
