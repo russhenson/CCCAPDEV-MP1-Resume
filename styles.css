@@ -58,6 +58,15 @@ section.about-me h2, section.education h2, section.organizations h2, .my-craft {
     padding-bottom: 15px;
 }
 
+section.about-me p {
+    padding: 0px 200px;
+    margin: 0px 200px;
+}
+
+section.education li, section.organizations li {
+    margin: 8px 0px;;
+}
+
 .box {
     display: block;
     position: relative;

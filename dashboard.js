@@ -30,6 +30,7 @@ function getAboutMe() {
 
     aboutMeRef.onSnapshot(function(doc) {
         aboutMeTextarea.innerHTML = doc.data().description;
+        
     });
         
 }
