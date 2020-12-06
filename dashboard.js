@@ -832,6 +832,184 @@ function removeEntreTool(entreToolID) {
 }
 
 
+let imgCounter = 0;
+
+function getCrafts() {
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+
+    db.collection("crafts").onSnapshot(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            if(imgCounter+1 % 3 === 0){
+                var divider = document.createElement("div");
+                divider.className = "w-100";
+            }
+
+            var craftContainer = document.createElement("div");
+            var craftImg = document.createElement("img");
+            var deleteBtn = document.createElement("button");
+            var deleteIcon = document.createElement("img");
+            var craftOverlay = document.createElement("div");
+            var craftDesc = document.createElement("textarea");
+            var craftLink = document.createElement("input");
+            var craftSaveBtn = document.createElement("button");
+
+            craftContainer.className = "imgContainer";
+            craftContainer.id = "imgContainer"+imgCounter;
+
+            craftImg.className = "craftCard";
+            craftImg.id = doc.data().name;
+            
+            craftImg.src = doc.data().imgUrl;
+
+            deleteBtn.className = "removeBtn btn";
+            deleteBtn.id = "craftDelete"+imgCounter;
+            deleteBtn.setAttribute("onclick", "deleteCraft(this.parentNode);");
+
+
+            deleteIcon.src = "/CCCAPDEV-MP1-Resume/icons/delete.svg";
+
+            craftOverlay.className = "craftOverlay";
+
+            craftDesc.className = "craftTitle";
+            craftDesc.placeholder = "Insert description";
+            craftDesc.id = "craftDescTextArea"+imgCounter;
+            craftDesc.value = doc.data().description;
+            craftDesc.rows = 2;
+            craftDesc.cols = 20;
+
+            craftLink.type = "text";
+            craftLink.value = doc.data().link;
+            craftLink.placeholder = "Insert link to craft";
+            craftLink.className = "craftLinkInput";
+            craftLink.id = "craftLinkInput"+imgCounter;
+
+            craftSaveBtn.type = "submit";
+            craftSaveBtn.className = "btn saveCraft";
+            craftSaveBtn.innerHTML = "save";
+            craftSaveBtn.id = "saveCraft"+imgCounter;
+            craftSaveBtn.setAttribute("onclick", "saveCraftInfo(this.parentNode);");
+            
+
+            deleteBtn.appendChild(deleteIcon);
+
+            craftOverlay.appendChild(craftDesc);
+            craftOverlay.appendChild(craftLink);
+            craftOverlay.appendChild(craftSaveBtn);
+
+            craftContainer.appendChild(craftImg);
+            craftContainer.appendChild(deleteBtn);
+            craftContainer.appendChild(craftOverlay);
+
+            document.getElementById("dashcraftContainer").appendChild(craftContainer);
+
+            imgCounter++;
+        });
+        
+        
+    });
+    
+    
+}
+
+
+//upload crafts
+function uploadImage(imgFile) {
+
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+    var imgName, imgURL;
+    
+    
+    var file = imgFile.files[0];
+    imgName = file.name;
+
+    
+
+    storageRef.child("images/"+imgName).put(file)
+
+    .then(function(){
+        storage.ref("images/"+imgName).getDownloadURL().then(function(url){
+            var imagename = imgName.replace(/\.[^/.]+$/, "");
+            var craftsRef = db.collection("crafts").doc(imagename);
+            //imgURL = storageRef.child("images/"+imgName).getDownloadURL();
+    
+
+            craftsRef.set({
+                name: imagename,
+                fileName: imgName,
+                imgUrl: url,
+                description: "",
+                link: ""
+            });
+ 
+        });
+        
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+    
+}
+
+function deleteCraft(craftContainerElem){
+    var craftName = craftContainerElem.firstChild.id;
+    var craftRef = db.collection("crafts").doc(craftName);
+    var storage = firebase.storage();
+    
+    craftContainerElem.remove();
+
+    craftRef.onSnapshot(function(doc){
+        var imgRef = storage.ref('images/'+doc.data().filename);
+
+        imgRef.delete().then(function() {
+            console.log("Image successfully deleted!");
+          }).catch(function(error) {
+            console.error("Error removing document: ", error);
+          });
+
+    });
+
+    craftRef.delete().then(function(){
+        location.reload();
+        console.log("Image data successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+
+}
+
+
+function saveCraftInfo(craftContainerElem){
+    var craftCont = craftContainerElem.parentNode;
+    var craftName = craftCont.firstChild.id;
+    var craftRef = db.collection("crafts").doc(craftName);
+    var index = craftCont.id[craftCont.id.length-1];
+    var craftDesc = document.getElementById("craftDescTextArea"+index);
+    var craftLink = document.getElementById("craftLinkInput"+index);
+
+    //console.log(index);
+
+    craftRef.update({
+        description: craftDesc.value,
+        link: craftLink.value
+    })
+    .then(function(){
+        console.log("Updated!");
+        location.reload();
+    });
+    
+    
+    
+
+        
+    
+
+}
+
+
+
+
 //saVe skills
 function saveSkill() {
     var artistRef = db.collection("skills").doc("artist");
@@ -896,13 +1074,13 @@ function saveSkill() {
 //render links
 function getLinks() {
     var linkRef = db.collection("links").doc("links");
-    var fbLink = document.getElementById("fblink");
+    var igLink = document.getElementById("iglink");
     var twitterLink = document.getElementById("twitterlink");
     var githubLink = document.getElementById("githublink");
     var linkedinLink = document.getElementById("linkedinlink");
 
     linkRef.onSnapshot(function(doc){
-        fbLink.value = doc.data().fb;
+        igLink.value = doc.data().ig;
         twitterLink.value = doc.data().twitter;
         githubLink.value = doc.data().github;
         linkedinLink.value = doc.data().linkedin;
@@ -912,13 +1090,13 @@ function getLinks() {
 
 //save links
 function saveLinks() {
-    var fblink = document.getElementById("fblink");
+    var iglink = document.getElementById("iglink");
     var twitterlink = document.getElementById("twitterlink");
     var githublink = document.getElementById("githublink");
     var linkedinlink = document.getElementById("linkedinlink");
     var linksRef = db.collection("links").doc("links");
     var saveBtn = document.getElementById("links-save-btn");
-    var linkInputs = [fblink, twitterlink, githublink, linkedinlink];
+    var linkInputs = [iglink, twitterlink, githublink, linkedinlink];
 
     saveBtn.disabled = true;
     linkInputs.forEach(function(element){
@@ -927,7 +1105,7 @@ function saveLinks() {
 
             saveBtn.addEventListener("click", (Event) => {
                 linksRef.update({
-                    fb: fblink.value,
+                    ig: iglink.value,
                     twitter: twitterlink.value,
                     github: githublink.value,
                     linkedin: linkedinlink.value
@@ -967,3 +1145,6 @@ addDevTools();
 addEntreTools();
 saveSkill();
 saveLinks();
+getCrafts().then(function(){
+    location.reload();
+});

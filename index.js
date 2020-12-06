@@ -95,13 +95,13 @@ function renderSkills() {
 function renderLinks() {
     var linkRef = db.collection("links").doc("links");
 
-    var fb = document.getElementById("fblink");
+    var ig = document.getElementById("iglink");
     var twitter = document.getElementById("twitterlink");
     var github = document.getElementById("githublink");
     var linkedin = document.getElementById("linkedinlink");
 
     linkRef.onSnapshot(function(doc){
-        fb.setAttribute("href", doc.data().fb);
+        ig.setAttribute("href", doc.data().ig);
         twitter.setAttribute("href", doc.data().twitter);
         github.setAttribute("href", doc.data().github);
         linkedin.setAttribute("href", doc.data().linkedin);
@@ -111,9 +111,72 @@ function renderLinks() {
 
 }
 
+function renderCraft(){
+    let imgCounter = 0;
+
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+
+    db.collection("crafts").onSnapshot(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            if(imgCounter+1 % 3 === 0){
+                var divider = document.createElement("div");
+                divider.className = "w-100";
+            }
+
+            var craftContainer = document.createElement("div");
+            var craftImg = document.createElement("img");
+            var craftOverlay = document.createElement("div");
+            var craftDesc = document.createElement("p");
+            var craftLink = document.createElement("a");
+            var viewBtn = document.createElement("button");
+
+            craftContainer.className = "imgContainer";
+            craftContainer.id = "imgContainer"+imgCounter;
+
+            craftImg.className = "craftCardMain";
+            craftImg.id = doc.data().name;
+            
+            craftImg.src = doc.data().imgUrl;
+
+            craftOverlay.className = "craftOverlay";
+
+            craftDesc.className = "craftDescription";
+            craftDesc.id = "craftDescTextArea"+imgCounter;
+            craftDesc.innerHTML = doc.data().description;
+
+            viewBtn.type = "button";
+            viewBtn.className = "btn viewCraft";
+            viewBtn.innerHTML = "view";
+            viewBtn.id = "viewCraft"+imgCounter;
+
+            craftLink.href = doc.data().link;
+
+            craftLink.appendChild(viewBtn);
+
+            craftOverlay.appendChild(craftDesc);
+            craftOverlay.appendChild(craftLink);
+
+            craftContainer.appendChild(craftImg);
+            craftContainer.appendChild(craftOverlay);
+
+            document.getElementById("my-crafts-box").appendChild(craftContainer);
+
+            imgCounter++;
+        });
+        
+        
+    }),
+    function(){
+        location.reload();
+    }
+    
+}
+
 
 renderAboutMe();
 renderEduc();
 renderOrg();
 renderSkills();
 renderLinks();
+renderCraft();

@@ -259,13 +259,25 @@
         <div class="container">  
              
             <h2 class="text-uppercase my-craft-title">My Craft</h2>
-            <div class="row crafts-box">
+            <div class="row dash-craft-container" id="dashcraftContainer">
                 
+                <!-- <div class="imgContainer" id="imgContainer">
+                    <img src="/CCCAPDEV-MP1-Resume/images/stzy.jpg" id="img" class="craftCard">
+                    <button class="removeBtn btn" id="craftDelete">
+                        <img src="/CCCAPDEV-MP1-Resume/icons/delete.svg" alt="delete">
+                    </button>
+
+                    <div class="craftOverlay">
+                        <input type="text" value="stzy" placeholder="one word name" class="craftNameInput" id="craftName">
+                        <textarea id="craftDescTextArea" cols="20" rows="2" placeholder="Insert description" class="craftTitle"></textarea>
+                        <input type="text" placeholder="Insert link" class="craftLinkInput" id="craftLinkInput">
+                        <button type="submit" class="btn saveCraft" id="saveCraft">Save</button>
+                    </div>
+                </div> -->
+
             </div>
-            <div class="skills-save-btn float-right" >
-                <button type="submit" class="btn btn-primary active"> 
-                    <img src="/CCCAPDEV-MP1-Resume/icons/upload.svg" alt="upload">
-                </button>
+            <div class="float-right" >
+                <input type="file" class="fileUpload" onchange="uploadImage(this);" accept=".png, .jpg, .jpeg" id="upload">
             </div>
             
         </div>
@@ -277,9 +289,9 @@
 
                 <!--fb-->
                 <div class="row linkcontainer">
-                    <img src="/CCCAPDEV-MP1-Resume/icons/facebook.svg" alt="facebook">
+                    <img src="/CCCAPDEV-MP1-Resume/icons/instagram.svg" alt="instagram">
                     <div class="col-md">
-                        <input type="text"  class="form-control linkinput" id="fblink">
+                        <input type="text"  class="form-control linkinput" id="iglink">
                     </div>
                 </div>
 
@@ -329,6 +341,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-storage.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->

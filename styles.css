@@ -127,11 +127,10 @@ section.education li, section.organizations li {
     margin: 20px;
 }
 
-.craft-box {
-    display: block;
+.crafts-box {
     margin-left: auto;
     margin-right: auto;
-    padding: 100%;
+    padding: 10px 20px;
 }
 
 .crafts {
@@ -142,7 +141,7 @@ section.education li, section.organizations li {
 
 .my-crafts-box {
     justify-content: center;
-    padding: auto;
+    padding: 20px 30px;
     margin: auto;
 }
 
@@ -428,14 +427,14 @@ footer {
     margin-bottom: 10px;
 }
 
-.crafts-box {
+.dash-craft-container {
     margin-top: 20px;
     border: 2px solid #ffffff;
     border-radius: 25px;
     height: auto;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 20px 10px;
     margin-bottom: 5px;
+    justify-content: center;
 }
 
 .dashboard-box {
@@ -586,3 +585,192 @@ footer {
     font-size: 15px;
    
 }
+
+.craftCard {
+    border-radius: 25px;
+    height: 200px;
+    width: 280px;
+}
+
+.craftCardMain {
+    border-radius: 25px;
+    height: 220px;
+    width: 300px;
+    margin: 5px;
+    border: none;
+}
+
+.craftDescription {
+    text-align: center;
+    margin: 50px 10px 20px 10px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+.removeBtn {
+    z-index: 1;
+    border: 2px solid #c7c7c7;
+    background-color: #191919;
+    border-radius: 100px;
+    padding: 0px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -3%;
+    right: -4%;
+}
+
+.removeBtn:hover {
+    box-shadow: 0 0 5px #fff;
+}
+
+
+
+.craftTitle {
+    transition: .5s ease;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: white;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 25%;
+    right: 0%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    width: 280px;
+    padding: 0px 12px;
+}
+
+.saveCraft, .viewCraft {
+    position: absolute;
+    top: 80%;
+    right: 38%;
+    border: 2px solid #ffa200;
+    color: #ffa200;
+    height: 30px;
+    width: 70px;
+    padding: 2px;
+    text-align: center;
+}
+
+.craftLinkInput {
+    position: absolute;
+    top: 60%;
+    width: 80%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    left: 10%;
+    font-weight: 200;
+    font-size: 12px;
+    text-align: center;
+}
+
+.craftNameInput {
+    position: absolute;
+    top: 5%;
+    width: 60%;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    color: #fff;
+    left: 20%;
+    font-weight: 200;
+    font-size: 14px;
+    text-align: center;
+}
+
+.craftNameInput:focus {
+    border-bottom: 1px solid #ffa200;
+}
+
+.craftLinkInput:focus {
+    border-bottom: 1px solid #ffa200;
+}
+
+.imgContainer {
+    margin: 10px;
+    position: relative;
+    justify-content: center;
+}
+
+
+.craftOverlay {
+    position: absolute;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #212121;
+}
+
+.imgContainer:hover .craftOverlay{
+    opacity: 1;
+    border-radius: 25px;
+}
+
+.imgContainer:hover .craftTitle{
+    opacity: 1;
+}
+
+.saveCraft:hover, .viewCraft:hover {
+    color: #ffa200;
+    outline: none;
+}
+
+.saveCraft:hover:enabled, .viewCraft:hover:enabled {
+    background-color: #ffa200;
+    color: #fff;
+    outline: none;
+}
+
+ .fileUpload {
+    color: transparent;
+    margin: 10px 0px;
+    padding: 0px;
+    width: 125px;
+    height: 40px;
+    outline: none;
+    border: none;
+    
+}
+ .fileUpload::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.fileUpload::before {
+    content: 'Upload Image';
+    color: #fff;
+    display: inline-block;
+    background: #ffa200;
+    border: none;
+    border-radius: 25px;
+    padding: 5px 10px;
+    outline: none !important;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.fileUpload:hover::before {
+    box-shadow: 0 0 7px #ffa200;
+}
+
+.fileUpload:active {
+    outline: none !important;
+    border: none;
+}
+
