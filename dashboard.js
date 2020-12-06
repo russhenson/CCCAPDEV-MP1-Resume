@@ -908,8 +908,7 @@ function getCrafts() {
         
         
     });
-    
-    
+  
 }
 
 
@@ -932,9 +931,7 @@ function uploadImage(imgFile) {
         storage.ref("images/"+imgName).getDownloadURL().then(function(url){
             var imagename = imgName.replace(/\.[^/.]+$/, "");
             var craftsRef = db.collection("crafts").doc(imagename);
-            //imgURL = storageRef.child("images/"+imgName).getDownloadURL();
-    
-
+   
             craftsRef.set({
                 name: imagename,
                 fileName: imgName,
@@ -999,14 +996,7 @@ function saveCraftInfo(craftContainerElem){
         location.reload();
     });
     
-    
-    
-
-        
-    
-
 }
-
 
 
 
@@ -1145,6 +1135,4 @@ addDevTools();
 addEntreTools();
 saveSkill();
 saveLinks();
-getCrafts().then(function(){
-    location.reload();
-});
+getCrafts();
